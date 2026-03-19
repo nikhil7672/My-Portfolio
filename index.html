@@ -1,301 +1,927 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            gridTemplateColumns: {
-              'auto': 'repeat(auto-fit, minmax(200px, 1fr))'
-            },
-            fontFamily: {
-              Outfit: ["Outfit", "sans-serif"],
-              Ovo: ["Ovo", "serif"]
-            },
-            animation: {
-              spin_slow: 'spin 6s linear infinite'
-            },
-            colors: {
-              lightHover: '#fcf4ff',
-              darkHover: '#2a004a',
-              darkTheme: '#11001F'
-            },
-            boxShadow: {
-              'black': '4px 4px 0 #000',
-              'white': '4px 4px 0 #fff',
-            }
-          }
-        },
-        darkMode: 'selector'
-      }
-    </script>
+    <title>Nikhil Gurung | MERN Stack Developer</title>
+    <meta name="description" content="Portfolio of Nikhil Gurung, an aspiring MERN stack developer and full stack intern building responsive web products with React, Node.js, and modern UI.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Ovo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --line: rgba(148, 163, 184, 0.16);
+            --text: #f8fafc;
+            --muted: #94a3b8;
+            --cyan: #22d3ee;
+            --amber: #f59e0b;
+            --radius: 28px;
+            --shadow: 0 30px 80px rgba(2, 6, 23, 0.55);
+            --max: 1180px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: "Space Grotesk", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), transparent 32%),
+                radial-gradient(circle at top right, rgba(245, 158, 11, 0.14), transparent 25%),
+                linear-gradient(180deg, #07111f 0%, #050816 45%, #02040c 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+            background-size: 54px 54px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 86%);
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        img { display: block; max-width: 100%; }
+        h1, h2, h3 { margin: 0; font-family: "Sora", sans-serif; }
+        p { margin: 0; color: var(--muted); line-height: 1.8; }
+
+        .orb {
+            position: fixed;
+            border-radius: 999px;
+            filter: blur(18px);
+            opacity: 0.36;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .orb.one { width: 220px; height: 220px; left: -70px; top: 10vh; background: rgba(34, 211, 238, 0.32); }
+        .orb.two { width: 280px; height: 280px; right: -90px; top: 22vh; background: rgba(245, 158, 11, 0.22); animation-delay: -4s; }
+        .orb.three { width: 180px; height: 180px; left: 12%; bottom: 10vh; background: rgba(190, 242, 100, 0.16); animation-delay: -7s; }
+
+        .container {
+            width: min(calc(100% - 32px), var(--max));
+            margin: 0 auto;
+        }
+
+        .section { padding: 92px 0; }
+        .section-head { max-width: 760px; margin-bottom: 36px; }
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            background: rgba(7, 17, 31, 0.6);
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.74rem;
+            font-weight: 700;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--amber));
+        }
+
+        h1 {
+            margin-top: 18px;
+            font-size: clamp(3rem, 7vw, 5.7rem);
+            line-height: 0.97;
+            letter-spacing: -0.06em;
+        }
+
+        h2 {
+            margin-top: 18px;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffffff 10%, var(--cyan) 55%, #fde68a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            transition: background 0.25s ease, border-color 0.25s ease;
+            backdrop-filter: blur(14px);
+        }
+
+        .header.scrolled {
+            background: rgba(5, 8, 22, 0.84);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 18px 0;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 700;
+        }
+
+        .brand-mark {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            color: #03121c;
+            background: linear-gradient(135deg, var(--cyan), #ffffff 55%, var(--amber));
+            box-shadow: 0 12px 24px rgba(34, 211, 238, 0.2);
+        }
+
+        .nav-links, .hero-actions, .tags, .project-tags, .footer-links, .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .nav-links a {
+            color: rgba(248, 250, 252, 0.84);
+            font-size: 0.95rem;
+            padding: 6px 2px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0 22px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-weight: 700;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .button:hover { transform: translateY(-3px); }
+        .button.primary {
+            color: #03121c;
+            background: linear-gradient(135deg, var(--cyan), #ffffff 48%, var(--amber));
+            box-shadow: 0 18px 30px rgba(34, 211, 238, 0.16);
+        }
+
+        .button.secondary {
+            border-color: var(--line);
+            background: rgba(7, 17, 31, 0.7);
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 48px;
+            height: 48px;
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            background: rgba(7, 17, 31, 0.74);
+            color: var(--text);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 54px 0 110px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+            gap: 42px;
+            align-items: center;
+        }
+
+        .hero-copy p { margin-top: 24px; max-width: 620px; font-size: 1.05rem; }
+        .hero-actions { margin-top: 32px; }
+
+        .quick-facts {
+            margin-top: 34px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card, .project-card, .timeline-card, .education-card, .contact-card, .fact {
+            background: linear-gradient(180deg, rgba(13, 20, 40, 0.92), rgba(5, 8, 22, 0.96));
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .fact { padding: 18px 18px 20px; }
+        .fact strong, .stat strong {
+            display: block;
+            font-family: "Sora", sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-visual { perspective: 1400px; }
+        .tilt-card {
+            padding: 24px;
+            border-radius: 34px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.92), rgba(5, 8, 22, 0.98));
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 40px 90px rgba(2, 6, 23, 0.58);
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease;
+        }
+
+        .profile-stage {
+            position: relative;
+            min-height: 560px;
+            overflow: hidden;
+            border-radius: 30px;
+            padding: 28px;
+            background:
+                radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 34%),
+                linear-gradient(180deg, rgba(8, 15, 31, 0.98), rgba(15, 23, 42, 0.92));
+        }
+
+        .ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            transform: translate(-50%, -50%);
+        }
+
+        .ring.one { width: 390px; height: 390px; }
+        .ring.two { width: 520px; height: 520px; border-style: dashed; animation: spin 18s linear infinite; }
+
+        .hero-photo {
+            position: relative;
+            z-index: 2;
+            width: min(100%, 360px);
+            margin: 58px auto 0;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transform: translateZ(54px);
+            box-shadow: 0 24px 50px rgba(2, 6, 23, 0.42);
+        }
+
+        .hero-photo img { width: 100%; height: 440px; object-fit: cover; }
+
+        .chip {
+            position: absolute;
+            z-index: 3;
+            padding: 12px 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(7, 17, 31, 0.88);
+            box-shadow: 0 18px 30px rgba(2, 6, 23, 0.4);
+            transform: translateZ(70px);
+            animation: bob 7s ease-in-out infinite;
+        }
+
+        .chip strong { display: block; font-size: 0.95rem; margin-bottom: 3px; }
+        .chip span { color: var(--muted); font-size: 0.85rem; }
+        .chip.one { top: 36px; left: 8px; }
+        .chip.two { right: 10px; top: 170px; animation-delay: -2s; }
+        .chip.three { left: 26px; bottom: 28px; animation-delay: -4s; }
+
+        .marquee {
+            margin-top: 22px;
+            overflow: hidden;
+            border-top: 1px solid rgba(148, 163, 184, 0.14);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+            background: rgba(7, 17, 31, 0.5);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 52px;
+            width: max-content;
+            padding: 16px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: rgba(248, 250, 252, 0.82);
+            font-weight: 700;
+            animation: marquee 22s linear infinite;
+        }
+
+        .about-grid, .skills-grid, .projects-grid, .contact-grid, .education-grid {
+            display: grid;
+            gap: 22px;
+        }
+
+        .about-grid, .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .skills-grid, .projects-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .education-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+        .card, .timeline-card, .contact-card {
+            padding: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after, .project-card::after {
+            content: "";
+            position: absolute;
+            right: -10%;
+            bottom: -60%;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 65%);
+            pointer-events: none;
+        }
+
+        .stats {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .stat {
+            padding: 20px 22px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .skill-card {
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+            background: rgba(7, 17, 31, 0.74);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(34, 211, 238, 0.3);
+        }
+
+        .skill-card ul, .project-card ul, .timeline-card ul {
+            margin: 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .tags, .project-tags { margin-top: 18px; }
+
+        .tag {
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.92rem;
+        }
+
+        .tag.featured {
+            border-color: rgba(245, 158, 11, 0.24);
+            background: rgba(245, 158, 11, 0.08);
+        }
+
+        .project-card { padding: 28px; position: relative; overflow: hidden; }
+
+        .project-label, .meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            color: rgba(248, 250, 252, 0.84);
+            font-size: 0.86rem;
+        }
+
+        .project-card p, .timeline-card p, .contact-card p, .education-card p { margin-bottom: 16px; }
+        .education-card { padding: 26px; }
+
+        .contact-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 18px;
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.14);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .contact-item span { color: var(--muted); font-size: 0.92rem; }
+
+        .footer {
+            padding: 24px 0 40px;
+            border-top: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(24px); }
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateZ(70px) translateY(0); }
+            50% { transform: translateZ(70px) translateY(-10px); }
+        }
+
+        @keyframes spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @media (max-width: 1080px) {
+            .hero-grid, .about-grid, .contact-grid, .skills-grid, .projects-grid, .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 760px) {
+            .menu-toggle { display: inline-grid; place-items: center; }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 12px);
+                left: 16px;
+                right: 16px;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 18px;
+                border-radius: 22px;
+                border: 1px solid var(--line);
+                background: rgba(5, 8, 22, 0.96);
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.open { display: flex; }
+            .nav .button.secondary { display: none; }
+            .hero { padding-top: 30px; }
+            .quick-facts, .stats { grid-template-columns: 1fr; }
+            .hero-actions, .contact-actions, .footer-inner, .contact-item { flex-direction: column; align-items: flex-start; }
+            .profile-stage { min-height: 500px; padding: 22px; }
+            .hero-photo img { height: 380px; }
+            .ring.two { width: 430px; height: 430px; }
+            .section { padding: 78px 0; }
+        }
+    </style>
 </head>
-<body class="overflow-x-hidden font-Outfit leading-8 dark:bg-darkTheme dark:text-white">
+<body>
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
 
-    <div class="fixed top-0 right-0 w-11/12 -z-10 translate-y-[-80%] dark:hidden">
-        <img src="./images/header-bg-color.png" alt="" class="w-full">
-    </div>
-
-    <nav class="w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50">
-        <img src="./images/logo.png" alt="Logo" class="w-28 cursor-pointer mr-14 dark:hidden">
-        <img src="./images/logo_dark.png" alt="Logo" class="w-28 cursor-pointer mr-14 hidden dark:block">
-        <ul class="hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 bg-white shadow-sm bg-opacity-50 font-Ovo dark:border dark:border-white/50 dark:bg-transparent">
-            <li><a href="#top">Home</a></li>
-            <li><a href="#about">About me</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#work">My Work</a></li>
-            <li><a href="#contact">Contact me</a></li>
-        </ul>
-
-        <div class="flex items-center gap-4">
-            <button onclick="toggleTheme()">
-                <img src="./images/moon_icon.png" alt="" class="w-6 dark:hidden">
-                <img src="./images/sun_icon.png" alt="" class="w-6 hidden dark:block">
-            </button>
-
-            <a href="#contact" class="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50">Contact
-                <img src="./images/arrow-icon.png" alt="" class="w-3 dark:hidden">
-                <img src="./images/arrow-icon-dark.png" alt="" class="w-3 hidden dark:block">
+    <header class="header" id="siteHeader">
+        <div class="container nav">
+            <a class="brand" href="#top">
+                <span class="brand-mark">NG</span>
+                <span>Nikhil Gurung</span>
             </a>
 
-            <button class="block md:hidden ml-3" onclick="openMenu()">
-                <img src="./images/menu-black.png" alt="" class="w-6 dark:hidden">
-                <img src="./images/menu-white.png" alt="" class="w-6 hidden dark:block">
-            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
 
-        </div>
-
-<!-----------------mobile menu--------------------------->
-
-        <ul id="sideMenu" class="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 font-Ovo shadow-lg dark:bg-[#2a004a] dark:text-white">
-
-            <div class="absolute right-6 top-6" onclick="closeMenu()">
-                <img src="./images/close-black.png" alt="" class="w-5 cursor-pointer dark:hidden">
-                <img src="./images/close-white.png" alt="" class="w-5 cursor-pointer hidden dark:block">
-            </div>
-
-            <li><a href="#top" onclick="closeMenu()">Home</a></li>
-            <li><a href="#about" onclick="closeMenu()">About me</a></li>
-            <li><a href="#services" onclick="closeMenu()">Services</a></li>
-            <li><a href="#work" onclick="closeMenu()">My Work</a></li>
-            <li><a href="#contact" onclick="closeMenu()">Contact me</a></li>
-        </ul>
-
-    </nav>
-
-<!---------------------header------------------------------------>
-
-<div class="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center">
-    <img src="./images/Gemini_Generated_Image_7olwyx7olwyx7olw.png" alt="" class="rounded-full w-32 h-32 aspect-square object-cover border-4 border-gray-300 dark:border-white/20">
-    <h3 class="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo">Hi! I'm Nikhil Gurung <img src="./images/hand-icon.png" class="w-6" alt=""></h3>
-    <h1 class="text-3xl sm:text-6xl lg:text-[66px] font-Ovo">Frontend Web Developer Based in India</h1>
-    <p class="max-w-2xl mx-auto font-Ovo">I am a Frontend web developer from Darjeeling, West Bengal, India, with hands-on experience in building modern, responsive, and user-friendly web interfaces.</p>
-
-    <div class="flex flex-col sm:flex-row items-center gap-4 mt-4">
-        <a href="#contact" class="px-10 py-3 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent">Contact Me <img src="./images/right-arrow-white.png" alt="" class="w-4"></a>
-        <a href="./images/Nikhil Gurung(Resume).pdf" download class="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black">My Resume <img src="./images/download-icon.png" alt="" class="w-4"></a>
-    </div>
-</div>
-
-<!-----------------------about me---------------------------------------->
-
-<div id="about" class="w-full px-[12%] py-10 scroll-mt-20">
-    <h4  class="text-center mb-2 text-lg" >Introduction</h4>
-    <h2 class="text-center text-5xl font-Ovo">About Me</h2>
-
-    <div class="flex w-full flex-col lg:flex-row items-center gap-20 my-20">
-        <div class="max-w-max mx-auto relative">
-
-            <div class="bg-white w-1/2 aspect-square absolute right-0 bottom-0 rounded-full translate-x-1/4 translate-y-1/3 shadow-[0_4px_55px_rgba(149,0,162,0.15)] flex items-center justify-center">
-                <img src="./images/circular-text.png" alt="" class="w-full animate-spin_slow">
-                <img src="./images/dev-icon.png" alt="" class="w-1/4 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            </div>
-            <img src="./images/IMG_20230922_141942.jpg" alt="" class="w-64 sm:w-80 rounded-3xl max-w-none">
-        </div>
-        <div class="flex-1">
-            <p class="mb-10 max-w-2xl font-Ovo">I am an experienced Frontend Developer with over a decade of professional expertise in the field. Throughout my career, I have had the privilege of collaborating with prestigious organizations, contributing to their success and growth.</p>
-
-            <ul class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl">
-                <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[lightHover] hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover-bg-darkHover/50">
-                    <img src="./images/code-icon.png" alt="" class="w-7 mt-3 dark:hidden">
-                    <img src="./images/code-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
-                    <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Languages</h3>
-                    <p class="text-gray-600 text-sm dark:text-white/80">HTML, CSS, JavaScript, React Js, Next Js</p>
-                </li>
-                <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[lightHover] hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover-bg-darkHover/50">
-                    <img src="./images/edu-icon.png" alt="" class="w-7 mt-3 dark:hidden">
-                    <img src="./images/edu-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
-                    <h3 class="my-4 font-semibold text-gray-700 dark:text-white">Education</h3>
-                    <p class="text-gray-600 text-sm dark:text-white/80">B.Sc in Cyber Security</p>
-                </li>
-                <li class="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-[lightHover] hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover-bg-darkHover/50">
-                    <img src="./images/project-icon.png" alt="" class="w-7 mt-3 dark:hidden">
-                    <img src="./images/project-icon-dark.png" alt="" class="w-7 mt-3 hidden dark:block">
-                    <h3 class="my-4 font-semibold text-gray-700 dark:text-white">projects</h3>
-                    <p class="text-gray-600 text-sm dark:text-white/80">Built more than 5 projects</p>
-                </li>
-            </ul>
-            <h4 class="my-6 text-gray-700 font-Ovo dark:text-white/80">Tools I Use</h4>
-
-            <ul class="flex items-center gap-3 sm:gap-5">
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/vscode.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/firebase.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/mongodb.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/figma.png" alt="" class="w-5 sm:w-7">
-                </li>
-                <li class="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:-translate-y-1 duration-500">
-                    <img src="./images/git.png" alt="" class="w-5 sm:w-7">
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-------------------------services--------------------------------->
-<div id="services" class="w-full px-[12%] py-10 scroll-mt-20">
-    <h4  class="text-center mb-2 text-lg font-Ovo" >What I Offer</h4>
-    <h2 class="text-center text-5xl font-Ovo">My Services</h2>
-    <p class="text-center max-w-2xl mx-auto mt-5 mb-12">I am an experienced Frontend Developer with over a decade of professional expertise in the field. Throughout my career, I have had the privilege of collaborating with prestigious organizations, contributing to their success and growth.</p>
-
-    <div class="grid grid-cols-auto gap-6 my-10">
-        <div class="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black cursor-pointer hover:bg-[lightHover] hover:-translaye-y-1  duration-500 dark:hover-bg-darkHover dark:hover:shadow-white">
-            <img src="./images/web-icon.png" alt="" class="w-10">
-            <h3 class="text-lg my-4 text-gray-700 dark:text-white">Web Design</h3>
-            <p class="text-sm text-gray-600 leading-5 dark:text-white/80">Web Development is the process of building, programming...</p>
-            <a href="" class="flex items-center gap-2 text-sm mt-5">Read More <img src="./images/right-arrow.png" alt="" class="w-4"></a>
-        </div>
-        <div class="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black cursor-pointer hover:bg-[lightHover] hover:-translaye-y-1  duration-500 dark:hover-bg-darkHover dark:hover:shadow-white">
-            <img src="./images/mobile-icon.png" alt="" class="w-10">
-            <h3 class="text-lg my-4 text-gray-700 dark:text-white">Mobile App</h3>
-            <p class="text-sm text-gray-600 leading-5 dark:text-white/80">Web Development is the process of building, programming...</p>
-            <a href="" class="flex items-center gap-2 text-sm mt-5">Read More <img src="./images/right-arrow.png" alt="" class="w-4"></a>
-        </div>
-        <div class="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black cursor-pointer hover:bg-[lightHover] hover:-translaye-y-1  duration-500 dark:hover-bg-darkHover dark:hover:shadow-white">
-            <img src="./images/ui-icon.png" alt="" class="w-10">
-            <h3 class="text-lg my-4 text-gray-700 dark:text-white">UI/UX Design</h3>
-            <p class="text-sm text-gray-600 leading-5 dark:text-white/80">Web Development is the process of building, programming...</p>
-            <a href="" class="flex items-center gap-2 text-sm mt-5">Read More <img src="./images/right-arrow.png" alt="" class="w-4"></a>
-        </div>
-        <div class="border border-gray-400 rounded-lg px-8 py-12 hover:shadow-black cursor-pointer hover:bg-[lightHover] hover:-translaye-y-1  duration-500 dark:hover-bg-darkHover dark:hover:shadow-white">
-            <img src="./images/graphics-icon.png" alt="" class="w-10">
-            <h3 class="text-lg my-4 text-gray-700 dark:text-white">Graphic Design</h3>
-            <p class="text-sm text-gray-600 leading-5 dark:text-white/80">Web Development is the process of building, programming...</p>
-            <a href="" class="flex items-center gap-2 text-sm mt-5">Read More <img src="./images/right-arrow.png" alt="" class="w-4"></a>
-        </div>
-    </div>
-</div>
-
-<!-----------------------my work----------------------------->
-
-<div id="work" class="w-full px-[12%] py-10 scroll-mt-20">
-    <h4  class="text-center mb-2 text-lg font-Ovo" >My Portfolio</h4>
-    <h2 class="text-center text-5xl font-Ovo">My Latest Work</h2>
-    <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">Welcome to my Web Development Portfolio! Explore a collection of projects showcasing my expertise in front-end development</p>
-
-    <div class="grid grid-cols-auto my-10 gap-5 dark:text-black">
-        <div class="aspect-square bg-[url('./images/work-1.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-            <div class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                <div>
-                    <h2 class="font-semibold">Geo based app</h2>
-                    <p class="text-sm text-gray-700">Mobile app</p>
-                </div>
-                <div class="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                    <img src="./images/send-icon.png" alt="" class="w-5">
-                </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+                <a class="button secondary" href="./images/Nikhil Gurung(Resume).pdf" download>Download Resume</a>
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
             </div>
         </div>
-        <div class="aspect-square bg-[url('./images/work-2.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-            <div class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                <div>
-                    <h2 class="font-semibold">Photography site</h2>
-                    <p class="text-sm text-gray-700">Web Design</p>
-                </div>
-                <div class="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                    <img src="./images/send-icon.png" alt="" class="w-5">
-                </div>
-            </div>
-        </div>
-        <div class="aspect-square bg-[url('./images/work-3.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-            <div class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                <div>
-                    <h2 class="font-semibold">Ui/Ux designing</h2>
-                    <p class="text-sm text-gray-700">Web Design</p>
-                </div>
-                <div class="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                    <img src="./images/send-icon.png" alt="" class="w-5">
-                </div>
-            </div>
-        </div>
-        <div class="aspect-square bg-[url('./images/work-4.png')] bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group">
-            <div class="bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7">
-                <div>
-                    <h2 class="font-semibold">Frontend Porject</h2>
-                    <p class="text-sm text-gray-700">Web Design</p>
-                </div>
-                <div class="border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition">
-                    <img src="./images/send-icon.png" alt="" class="w-5">
-                </div>
-            </div>
-        </div>
-    </div>
-    <a href="#" class="w-max flex items-center justify-center gap-2 text-gray-700 border-[0.5px] border-gray-700 rounded-full py-3 px-10 mx-auto my-20 hover:bg-[lightHover] duration-500 dark:text-white dark:border-white dark:hover:bg-darkHover">Show more 
-        <img src="./images/right-arrow-bold.png" alt="" class="w-4 dark:hidden">
-        <img src="./images/right-arrow-bold-dark.png" alt="" class="w-4 hidden dark:block">
-    </a>
-</div>
-<!-----------------------contact----------------------------->
-<div id="contact" class="w-full px-[12%] py-10 scroll-mt-20 bg-[url('./images/footer-bg-color.png')] bg-no-repeat ng-[length:90%_auto] bg-center dark:bg-none">
-    <h4  class="text-center mb-2 text-lg font-Ovo" >Connect with me</h4>
-    <h2 class="text-center text-5xl font-Ovo">Get in touch</h2>
-    <p class="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo">I'd love to hear from you! If you have any questions, comments or feedback, please use the form below.</p>
+    </header>
 
-    <form method="POST" action="https://api.web3forms.com/submit" class="max-w-2xl mx-auto">
-        <input type="hidden" name="access_key" value="68b247e9-f073-4768-b1ec-d0655bd317b7">
-        <div class="grid grid-cols-auto gap-6 mt-10 mb-8">
-            <input type="text" placeholder="Enter your name" class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90" required name="name">
-            <input type="email" placeholder="Enter your email" class="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90" required name="email">
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <span class="eyebrow">Available for internship roles</span>
+                    <h1>Aspiring <span class="highlight">MERN Stack Developer</span> building bold, product-ready web experiences.</h1>
+                    <p>
+                        I’m Nikhil Gurung, a full stack intern from Siliguri, India. My strongest foundation is in React, JavaScript, Tailwind CSS, and responsive frontend systems, and I’m now positioning myself for MERN full stack internship roles with backend exposure in Node.js and API integration.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button primary" href="#projects">View Projects</a>
+                        <a class="button secondary" href="mailto:nikhilgurung170@gmail.com">Let's Connect</a>
+                    </div>
+
+                    <div class="quick-facts">
+                        <div class="fact">
+                            <strong>6 Months</strong>
+                            <p>Internship experience at XFused.</p>
+                        </div>
+                        <div class="fact">
+                            <strong>2023-2027</strong>
+                            <p>B.Sc. Cyber Security at Siliguri Institute of Technology.</p>
+                        </div>
+                        <div class="fact">
+                            <strong>Frontend First</strong>
+                            <p>Growing fast into a stronger MERN profile.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual reveal">
+                    <div class="tilt-card" data-tilt-card>
+                        <div class="profile-stage">
+                            <div class="ring one"></div>
+                            <div class="ring two"></div>
+
+                            <div class="chip one">
+                                <strong>React + Tailwind</strong>
+                                <span>Responsive UI systems</span>
+                            </div>
+
+                            <div class="chip two">
+                                <strong>Internship Ready</strong>
+                                <span>Product mindset and delivery focus</span>
+                            </div>
+
+                            <div class="chip three">
+                                <strong>MERN Direction</strong>
+                                <span>Node.js, APIs, backend growth</span>
+                            </div>
+
+                            <div class="hero-photo">
+                                <img src="./images/IMG_20230922_141942.jpg" alt="Nikhil Gurung portrait">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="marquee reveal">
+                <div class="marquee-track">
+                    <span>React.js</span>
+                    <span>JavaScript</span>
+                    <span>Tailwind CSS</span>
+                    <span>Next.js</span>
+                    <span>TypeScript</span>
+                    <span>Node.js</span>
+                    <span>API Integration</span>
+                    <span>Responsive UI</span>
+                    <span>GitHub Collaboration</span>
+                    <span>React.js</span>
+                    <span>JavaScript</span>
+                    <span>Tailwind CSS</span>
+                    <span>Next.js</span>
+                    <span>TypeScript</span>
+                    <span>Node.js</span>
+                    <span>API Integration</span>
+                    <span>Responsive UI</span>
+                    <span>GitHub Collaboration</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">About</span>
+                    <h2>From frontend execution to full stack growth.</h2>
+                    <p>
+                        This site is now focused on your actual engineering story instead of a generic freelance portfolio. It highlights the direction you want to grow into: a MERN full stack developer who can build polished interfaces, connect them with APIs, and contribute inside real product teams.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+                    <article class="card reveal">
+                        <h3>Professional Summary</h3>
+                        <p>
+                            I enjoy building interfaces that feel modern, responsive, and product-ready. My work so far includes a phishing URL scanner PWA, AI recommendation interfaces, and brand websites with strong frontend polish.
+                        </p>
+                        <div class="stats">
+                            <div class="stat">
+                                <strong>3+</strong>
+                                <p>Resume-backed projects with real depth.</p>
+                            </div>
+                            <div class="stat">
+                                <strong>PWA</strong>
+                                <p>Security-focused app experience.</p>
+                            </div>
+                            <div class="stat">
+                                <strong>AI UI</strong>
+                                <p>Built interfaces for AI-powered flows.</p>
+                            </div>
+                            <div class="stat">
+                                <strong>Remote</strong>
+                                <p>Comfortable with Git-based collaboration.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card reveal">
+                        <h3>MERN Positioning</h3>
+                        <p>
+                            Your strongest proof today is frontend delivery, so this portfolio leads with that honestly. At the same time, it clearly shows your backend interest in Node.js and API integration so recruiters can see the full stack trajectory.
+                        </p>
+                        <div class="tags">
+                            <span class="tag featured">React.js</span>
+                            <span class="tag featured">JavaScript</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">Next.js</span>
+                            <span class="tag">TypeScript</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">API Integration</span>
+                            <span class="tag">Git / GitHub</span>
+                            <span class="tag">Figma</span>
+                            <span class="tag">Responsive Design</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Skills</span>
+                    <h2>Frontend depth with growing full stack capability.</h2>
+                    <p>
+                        The skill presentation now feels stronger for intern hiring: clear, technical, and aligned to engineering work instead of freelance service cards.
+                    </p>
+                </div>
+
+                <div class="skills-grid">
+                    <article class="skill-card reveal">
+                        <h3>Frontend Engineering</h3>
+                        <ul>
+                            <li>HTML5, CSS3, JavaScript</li>
+                            <li>React.js, Next.js, TypeScript</li>
+                            <li>Tailwind CSS and mobile-first responsive UI</li>
+                            <li>Usability, accessibility, and performance focus</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <h3>Backend Growth</h3>
+                        <ul>
+                            <li>Node.js fundamentals</li>
+                            <li>API integration and app flow collaboration</li>
+                            <li>Frontend to backend coordination mindset</li>
+                            <li>Strong interest in growing into MERN workflows</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <h3>Tools & Workflow</h3>
+                        <ul>
+                            <li>Git and GitHub collaboration</li>
+                            <li>Figma and wireframing</li>
+                            <li>Remote teamwork and iterative delivery</li>
+                            <li>English, Hindi, and Nepali communication</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="experience">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Experience</span>
+                    <h2>Real delivery experience, not tutorial-only work.</h2>
+                    <p>
+                        This gives your portfolio a more professional product story and helps recruiters immediately connect your work to internship-readiness.
+                    </p>
+                </div>
+
+                <article class="timeline-card reveal">
+                    <span class="meta">Web & AI Agent Intern · XFused · Remote, India · 6 Months</span>
+                    <h3>Built responsive product experiences for a real brand.</h3>
+                    <p>
+                        At XFused, you worked on website delivery, responsive product pages, API-connected features, and Git-based collaboration that reflects real engineering team workflows.
+                    </p>
+                    <ul>
+                        <li>Built and deployed a website for a skin-care brand.</li>
+                        <li>Developed responsive UI and product pages using React and Tailwind.</li>
+                        <li>Integrated APIs and supported AI-powered functionality.</li>
+                        <li>Maintained code and collaborated using Git and GitHub.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Projects</span>
+                    <h2>Projects aligned to the role you actually want.</h2>
+                    <p>
+                        I replaced the generic work cards with the projects that best support your MERN full stack intern positioning.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project-card reveal">
+                        <span class="project-label">Security-focused PWA</span>
+                        <h3>URL Scanner PWA</h3>
+                        <p>
+                            A mobile-first Progressive Web App built to detect phishing and malicious URLs in real time with a clean, trustworthy UI.
+                        </p>
+                        <ul>
+                            <li>Built with React, JavaScript, and Tailwind CSS.</li>
+                            <li>Integrated SSL certificate checks and IP origin detection.</li>
+                            <li>Deployed on Vercel with responsive UI and performance focus.</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">PWA</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <span class="project-label">AI + Product UI</span>
+                        <h3>AI Outfit Recommendation Platform</h3>
+                        <p>
+                            A recommendation experience focused on personalized suggestions, smooth browsing, and frontend collaboration with AI-driven logic.
+                        </p>
+                        <ul>
+                            <li>Developed frontend interfaces for outfit recommendations.</li>
+                            <li>Designed easy-to-use browsing and suggestion flows.</li>
+                            <li>Collaborated with backend APIs for recommendation logic.</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">API Integration</span>
+                            <span class="tag">AI UI</span>
+                        </div>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <span class="project-label">Brand Website Delivery</span>
+                        <h3>XFused Official Website</h3>
+                        <p>
+                            A responsive company website built and launched with stronger usability, accessibility, and professional frontend polish.
+                        </p>
+                        <ul>
+                            <li>Built responsive UI with React and Tailwind CSS.</li>
+                            <li>Improved usability, performance, and accessibility.</li>
+                            <li>Shipped a cleaner and more professional web presence.</li>
+                        </ul>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Tailwind</span>
+                            <span class="tag">Accessibility</span>
+                            <span class="tag">Responsive UI</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Education</span>
+                    <h2>Academic base plus full stack training.</h2>
+                    <p>
+                        This keeps your portfolio recruiter-friendly by balancing projects, experience, training, and long-term growth potential.
+                    </p>
+                </div>
+
+                <div class="education-grid">
+                    <article class="education-card reveal">
+                        <h3>B.Sc. Cyber Security</h3>
+                        <p>Siliguri Institute of Technology · 2023-2027</p>
+                        <p>Building technical problem-solving and security-aware development fundamentals.</p>
+                    </article>
+
+                    <article class="education-card reveal">
+                        <h3>Full Stack Web Development Training</h3>
+                        <p>Certified on completion of full stack web development training.</p>
+                        <p>Supports your shift from frontend specialization toward a broader MERN path.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">Contact</span>
+                    <h2>Open to MERN full stack and frontend internship opportunities.</h2>
+                    <p>
+                        If you’re hiring for an intern who can contribute on the frontend from day one and keep growing into full stack product work, let’s connect.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <article class="contact-card reveal">
+                        <h3>Contact Details</h3>
+                        <p>I’m based in Siliguri, West Bengal, India and open to remote internship opportunities.</p>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <div>
+                                    <strong>Email</strong>
+                                    <span>Best for internship conversations</span>
+                                </div>
+                                <a href="mailto:nikhilgurung170@gmail.com">nikhilgurung170@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <div>
+                                    <strong>Phone</strong>
+                                    <span>Available for quick discussions</span>
+                                </div>
+                                <a href="tel:+918250547672">+91 8250547672</a>
+                            </div>
+                            <div class="contact-item">
+                                <div>
+                                    <strong>Location</strong>
+                                    <span>Remote and internship friendly</span>
+                                </div>
+                                <span>Siliguri, West Bengal, India</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="contact-card reveal">
+                        <h3>Professional Links</h3>
+                        <p>I kept the final section more professional and role-focused instead of social-heavy.</p>
+                        <div class="contact-actions" style="margin-top:22px;">
+                            <a class="button primary" href="https://github.com/nikhil7672" target="_blank" rel="noreferrer">GitHub</a>
+                            <a class="button secondary" href="https://www.linkedin.com/in/nikhil-gurung" target="_blank" rel="noreferrer">LinkedIn</a>
+                            <a class="button secondary" href="./images/Nikhil Gurung(Resume).pdf" download>Resume PDF</a>
+                        </div>
+                        <div class="tags" style="margin-top:26px;">
+                            <span class="tag">English - Professional Working Proficiency</span>
+                            <span class="tag">Hindi - Professional Working Proficiency</span>
+                            <span class="tag">Nepali - Native / Fluent</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Nikhil Gurung. Portfolio tailored for MERN full stack internship applications.</p>
+            <div class="footer-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
-        <textarea rows="6" placeholder="Enter your message" class="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90" required name="name"></textarea>
-        <button class="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover">Submit now 
-            <img src="./images/right-arrow-white.png" alt="" class="w-4"></button>
-    </form>
-</div>
-<!-------------------------footer----------------------------->
-<div class="mt-20">
-    <div class="text-center">
-        <img src="./images/logo.png" alt="" class="w-36 mx-auto mb-2 dark:hidden">
-        <img src="./images/logo_dark.png" alt="" class="w-36 mx-auto mb-2 hidden dark:block">
-        <div class="w-max flex items-center gap-2 mx-auto">
-            <img src="./images/mail_icon.png" alt="" class="w-6 dark:hidden">
-            <img src="./images/mail_icon_dark.png" alt="" class="w-6 hidden dark:block">
-            
-            nikhilgurung170@gmail.com
-        </div>
-    </div>
-    <div class="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-12 py-6">
-        <p>© 2025 Nikhil Gurung. All rights reserved.</p>
-        <ul class="flex items-center gap-10 justify-center mt-4 sm:mt-0">
-            <li><a href="https://www.instagram.com/kenn_.zo_/">Instagram</a></li>
-            <li><a href="https://github.com/nikhil7672">GitHub</a></li>
-            <li><a href="www.linkedin.com/in/nikhil-gurung">LinkedIn</a></li>
-        </ul>
-    </div>
-</div>
+    </footer>
+
     <script src="./script.js"></script>
-
 </body>
 </html>

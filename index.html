@@ -386,6 +386,37 @@
 
         .tags, .project-tags { margin-top: 18px; }
 
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 0 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+            font-weight: 700;
+            font-size: 0.92rem;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .project-link.live {
+            color: #03121c;
+            border-color: transparent;
+            background: linear-gradient(135deg, var(--cyan), #ffffff 48%, var(--amber));
+        }
+
         .tag {
             padding: 10px 14px;
             border-radius: 999px;
@@ -762,7 +793,7 @@
                     <span class="eyebrow">Projects</span>
                     <h2>Projects aligned to the role you actually want.</h2>
                     <p>
-                        I replaced the generic work cards with the projects that best support your MERN full stack intern positioning.
+                        Each project now includes a live preview and GitHub repo so recruiters can verify the work quickly and see that you actually shipped it.
                     </p>
                 </div>
 
@@ -784,6 +815,10 @@
                             <span class="tag">Tailwind CSS</span>
                             <span class="tag">PWA</span>
                         </div>
+                        <div class="project-actions">
+                            <a class="project-link live" href="https://urlscanneruat.vercel.app/" target="_blank" rel="noreferrer">Live Preview</a>
+                            <a class="project-link" href="https://github.com/nikhil7672/mobile-url-scanner" target="_blank" rel="noreferrer">GitHub Repo</a>
+                        </div>
                     </article>
 
                     <article class="project-card reveal">
@@ -803,24 +838,34 @@
                             <span class="tag">API Integration</span>
                             <span class="tag">AI UI</span>
                         </div>
+                        <div class="project-actions">
+                            <a class="project-link live" href="https://glamourhall-v2-fe.vercel.app/chat" target="_blank" rel="noreferrer">Live Preview</a>
+                            <a class="project-link" href="https://github.com/nikhil7672/Glamourhall.tech" target="_blank" rel="noreferrer">GitHub Repo</a>
+                        </div>
                     </article>
 
                     <article class="project-card reveal">
-                        <span class="project-label">Brand Website Delivery</span>
-                        <h3>XFused Official Website</h3>
+                        <span class="project-label">Creator Tool + AI</span>
+                        <h3>AI Thumbnail Generator (Thumblify)</h3>
                         <p>
-                            A responsive company website built and launched with stronger usability, accessibility, and professional frontend polish.
+                            A web-based AI tool designed to generate high-converting, scroll-stopping thumbnails from simple prompts with a fast and creator-friendly workflow.
                         </p>
                         <ul>
-                            <li>Built responsive UI with React and Tailwind CSS.</li>
-                            <li>Improved usability, performance, and accessibility.</li>
-                            <li>Shipped a cleaner and more professional web presence.</li>
+                            <li>Built an AI thumbnail generation platform that turns text ideas into engaging designs in seconds.</li>
+                            <li>Designed an intuitive UI for prompts, style selection, and real-time thumbnail preview.</li>
+                            <li>Integrated AI image generation workflows and customization options like colors, elements, and uploads.</li>
+                            <li>Focused on fast generation, usability, and creator productivity.</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">React</span>
-                            <span class="tag">Tailwind</span>
-                            <span class="tag">Accessibility</span>
-                            <span class="tag">Responsive UI</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">AI APIs</span>
+                            <span class="tag">Vercel</span>
+                        </div>
+                        <div class="project-actions">
+                            <a class="project-link live" href="https://thumblify-umber-two.vercel.app/" target="_blank" rel="noreferrer">Live Preview</a>
+                            <a class="project-link" href="https://github.com/nikhil7672/Thumblify" target="_blank" rel="noreferrer">GitHub Repo</a>
                         </div>
                     </article>
                 </div>
@@ -840,7 +885,7 @@
                 <div class="education-grid">
                     <article class="education-card reveal">
                         <h3>B.Sc. Cyber Security</h3>
-                        <p>Siliguri Institute of Technology · 2023-2027</p>
+                        <p>Siliguri Institute of Technology - 2023-2027</p>
                         <p>Building technical problem-solving and security-aware development fundamentals.</p>
                     </article>
 
@@ -859,14 +904,14 @@
                     <span class="eyebrow">Contact</span>
                     <h2>Open to MERN full stack and frontend internship opportunities.</h2>
                     <p>
-                        If you’re hiring for an intern who can contribute on the frontend from day one and keep growing into full stack product work, let’s connect.
+                        If you're hiring for an intern who can contribute on the frontend from day one and keep growing into full stack product work, let's connect.
                     </p>
                 </div>
 
                 <div class="contact-grid">
                     <article class="contact-card reveal">
                         <h3>Contact Details</h3>
-                        <p>I’m based in Siliguri, West Bengal, India and open to remote internship opportunities.</p>
+                        <p>I'm based in Siliguri, West Bengal, India and open to remote internship opportunities.</p>
                         <div class="contact-list">
                             <div class="contact-item">
                                 <div>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikhil Gurung | MERN Stack Developer</title>
-    <meta name="description" content="Portfolio of Nikhil Gurung, an aspiring MERN stack developer and full stack intern building responsive web products with React, Node.js, and modern UI.">
+    <title>Nikhil Gurung | Software Engineer & MERN Stack Developer</title>
+    <meta name="description" content="Nikhil Gurung is a software engineer with 1+ year of experience building full stack web applications, AI features, and security-focused products.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -480,19 +480,25 @@
         }
 
         .reveal {
-            opacity: 0;
-            transform: translateY(24px);
+            opacity: 1;
+            transform: translateY(0);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
 
         .reveal.visible {
             opacity: 1;
             transform: translateY(0);
+            animation: reveal-in 0.7s ease both;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(24px); }
+        }
+
+        @keyframes reveal-in {
+            from { opacity: 0.7; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bob {
@@ -546,6 +552,17 @@
             .ring.two { width: 430px; height: 430px; }
             .section { padding: 78px 0; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html.js .reveal { opacity: 1; transform: none; }
+        }
     </style>
 </head>
 <body>
@@ -569,39 +586,39 @@
             </nav>
 
             <div style="display:flex;align-items:center;gap:12px;">
-                <a class="button secondary" href="./images/Nikhil Gurung(Resume).pdf" download>Download Resume</a>
+                <a class="button secondary" href="./images/Nikhil Gurung.pdf" download>Download Resume</a>
                 <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
             </div>
         </div>
     </header>
 
     <main id="top">
-        <section class="hero">
+        <section class="hero" id="about">
             <div class="container hero-grid">
                 <div class="hero-copy reveal">
-                    <span class="eyebrow">Available for internship roles</span>
-                    <h1>Aspiring <span class="highlight">MERN Stack Developer</span> building bold, product-ready web experiences.</h1>
+                    <span class="eyebrow">Software Engineer · Full Stack Developer</span>
+                    <h1><span class="highlight">Software Engineer</span> specializing in full stack development</h1>
                     <p>
-                        I’m Nikhil Gurung, a full stack intern from Siliguri, India. My strongest foundation is in React, JavaScript, Tailwind CSS, and responsive frontend systems, and I’m now positioning myself for MERN full stack internship roles with backend exposure in Node.js and API integration.
+                        I’m Nikhil Gurung, a software engineer with 1+ year of hands-on experience building and deploying full stack web applications, AI-powered features, and security-focused products. I work across React, Node.js, Express, REST APIs, PostgreSQL, MongoDB, Docker, and AWS.
                     </p>
 
                     <div class="hero-actions">
                         <a class="button primary" href="#projects">View Projects</a>
-                        <a class="button secondary" href="mailto:nikhilgurung170@gmail.com">Let's Connect</a>
+                        <a class="button secondary" href="mailto:nikhilgurung103@gmail.com">Let's Connect</a>
                     </div>
 
                     <div class="quick-facts">
                         <div class="fact">
-                            <strong>6 Months</strong>
-                            <p>Internship experience at XFused.</p>
+                            <strong>1+ Year</strong>
+                            <p>Software engineering experience.</p>
                         </div>
                         <div class="fact">
                             <strong>2023-2027</strong>
                             <p>B.Sc. Cyber Security at Siliguri Institute of Technology.</p>
                         </div>
                         <div class="fact">
-                            <strong>Frontend First</strong>
-                            <p>Growing fast into a stronger MERN profile.</p>
+                            <strong>Full Stack</strong>
+                            <p>Frontend, backend, databases, and deployment.</p>
                         </div>
                     </div>
                 </div>
@@ -613,18 +630,18 @@
                             <div class="ring two"></div>
 
                             <div class="chip one">
-                                <strong>React + Tailwind</strong>
-                                <span>Responsive UI systems</span>
+                                <strong>React + Node.js</strong>
+                                <span>Full stack product development</span>
                             </div>
 
                             <div class="chip two">
-                                <strong>Internship Ready</strong>
-                                <span>Product mindset and delivery focus</span>
+                                <strong>AI Integrated</strong>
+                                <span>Gemini, OpenAI, and LLM workflows</span>
                             </div>
 
                             <div class="chip three">
-                                <strong>MERN Direction</strong>
-                                <span>Node.js, APIs, backend growth</span>
+                                <strong>Cloud Deployed</strong>
+                                <span>AWS, Docker, and Vercel</span>
                             </div>
 
                             <div class="hero-photo">
@@ -643,76 +660,22 @@
                     <span>Next.js</span>
                     <span>TypeScript</span>
                     <span>Node.js</span>
-                    <span>API Integration</span>
-                    <span>Responsive UI</span>
-                    <span>GitHub Collaboration</span>
+                    <span>Express.js</span>
+                    <span>PostgreSQL</span>
+                    <span>MongoDB</span>
+                    <span>AWS</span>
+                    <span>Docker</span>
                     <span>React.js</span>
                     <span>JavaScript</span>
                     <span>Tailwind CSS</span>
                     <span>Next.js</span>
                     <span>TypeScript</span>
                     <span>Node.js</span>
-                    <span>API Integration</span>
-                    <span>Responsive UI</span>
-                    <span>GitHub Collaboration</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="about">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="eyebrow">About</span>
-                    <h2>From frontend execution to full stack growth.</h2>
-                    <p>
-                        This site is now focused on your actual engineering story instead of a generic freelance portfolio. It highlights the direction you want to grow into: a MERN full stack developer who can build polished interfaces, connect them with APIs, and contribute inside real product teams.
-                    </p>
-                </div>
-
-                <div class="about-grid">
-                    <article class="card reveal">
-                        <h3>Professional Summary</h3>
-                        <p>
-                            I enjoy building interfaces that feel modern, responsive, and product-ready. My work so far includes a phishing URL scanner PWA, AI recommendation interfaces, and brand websites with strong frontend polish.
-                        </p>
-                        <div class="stats">
-                            <div class="stat">
-                                <strong>3+</strong>
-                                <p>Resume-backed projects with real depth.</p>
-                            </div>
-                            <div class="stat">
-                                <strong>PWA</strong>
-                                <p>Security-focused app experience.</p>
-                            </div>
-                            <div class="stat">
-                                <strong>AI UI</strong>
-                                <p>Built interfaces for AI-powered flows.</p>
-                            </div>
-                            <div class="stat">
-                                <strong>Remote</strong>
-                                <p>Comfortable with Git-based collaboration.</p>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="card reveal">
-                        <h3>MERN Positioning</h3>
-                        <p>
-                            Your strongest proof today is frontend delivery, so this portfolio leads with that honestly. At the same time, it clearly shows your backend interest in Node.js and API integration so recruiters can see the full stack trajectory.
-                        </p>
-                        <div class="tags">
-                            <span class="tag featured">React.js</span>
-                            <span class="tag featured">JavaScript</span>
-                            <span class="tag">Tailwind CSS</span>
-                            <span class="tag">Next.js</span>
-                            <span class="tag">TypeScript</span>
-                            <span class="tag">Node.js</span>
-                            <span class="tag">API Integration</span>
-                            <span class="tag">Git / GitHub</span>
-                            <span class="tag">Figma</span>
-                            <span class="tag">Responsive Design</span>
-                        </div>
-                    </article>
+                    <span>Express.js</span>
+                    <span>PostgreSQL</span>
+                    <span>MongoDB</span>
+                    <span>AWS</span>
+                    <span>Docker</span>
                 </div>
             </div>
         </section>
@@ -721,40 +684,62 @@
             <div class="container">
                 <div class="section-head reveal">
                     <span class="eyebrow">Skills</span>
-                    <h2>Frontend depth with growing full stack capability.</h2>
+                    <h2>Tools and technologies across the stack.</h2>
                     <p>
-                        The skill presentation now feels stronger for intern hiring: clear, technical, and aligned to engineering work instead of freelance service cards.
+                        My day-to-day stack spans frontend, backend, databases, cloud deployment, AI integrations, and security.
                     </p>
                 </div>
 
                 <div class="skills-grid">
                     <article class="skill-card reveal">
-                        <h3>Frontend Engineering</h3>
+                        <h3>Languages</h3>
                         <ul>
-                            <li>HTML5, CSS3, JavaScript</li>
-                            <li>React.js, Next.js, TypeScript</li>
-                            <li>Tailwind CSS and mobile-first responsive UI</li>
-                            <li>Usability, accessibility, and performance focus</li>
+                            <li>JavaScript and TypeScript</li>
+                            <li>SQL and Java</li>
                         </ul>
                     </article>
 
                     <article class="skill-card reveal">
-                        <h3>Backend Growth</h3>
+                        <h3>Frontend</h3>
                         <ul>
-                            <li>Node.js fundamentals</li>
-                            <li>API integration and app flow collaboration</li>
-                            <li>Frontend to backend coordination mindset</li>
-                            <li>Strong interest in growing into MERN workflows</li>
+                            <li>React.js and Next.js</li>
+                            <li>Tailwind CSS, HTML5, and CSS3</li>
+                            <li>Responsive UI development</li>
                         </ul>
                     </article>
 
                     <article class="skill-card reveal">
-                        <h3>Tools & Workflow</h3>
+                        <h3>Backend</h3>
                         <ul>
-                            <li>Git and GitHub collaboration</li>
-                            <li>Figma and wireframing</li>
-                            <li>Remote teamwork and iterative delivery</li>
-                            <li>English, Hindi, and Nepali communication</li>
+                            <li>Node.js and Express.js</li>
+                            <li>REST API and backend development</li>
+                            <li>Authentication and API integration</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <h3>Databases</h3>
+                        <ul>
+                            <li>PostgreSQL and MongoDB</li>
+                            <li>Database design and operations</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <h3>Cloud & DevOps</h3>
+                        <ul>
+                            <li>AWS and Docker</li>
+                            <li>Git and GitHub workflows</li>
+                            <li>Application deployment</li>
+                        </ul>
+                    </article>
+
+                    <article class="skill-card reveal">
+                        <h3>AI, Security & Tools</h3>
+                        <ul>
+                            <li>AI/LLM integration, Gemini, and OpenAI API</li>
+                            <li>Cybersecurity and application security</li>
+                            <li>Postman</li>
                         </ul>
                     </article>
                 </div>
@@ -765,24 +750,26 @@
             <div class="container">
                 <div class="section-head reveal">
                     <span class="eyebrow">Experience</span>
-                    <h2>Real delivery experience, not tutorial-only work.</h2>
+                    <h2>Full stack delivery at XFused.</h2>
                     <p>
-                        This gives your portfolio a more professional product story and helps recruiters immediately connect your work to internship-readiness.
+                        Production website delivery, AI feature integration, reusable components, and collaborative Git workflows.
                     </p>
                 </div>
 
                 <article class="timeline-card reveal">
-                    <span class="meta">Web & AI Agent Intern · XFused · Remote, India · 6 Months</span>
-                    <h3>Built responsive product experiences for a real brand.</h3>
+                    <span class="meta">Web Dev & AI Agent Intern · XFused · Remote, India · June 2025 - May 2026</span>
+                    <h3>Web development and AI agent internship</h3>
                     <p>
-                        At XFused, you worked on website delivery, responsive product pages, API-connected features, and Git-based collaboration that reflects real engineering team workflows.
+                        Developed and deployed a production skincare brand website using React.js and Tailwind CSS, with cross-device responsiveness and API-connected AI features.
                     </p>
                     <ul>
-                        <li>Built and deployed a website for a skin-care brand.</li>
-                        <li>Developed responsive UI and product pages using React and Tailwind.</li>
-                        <li>Integrated APIs and supported AI-powered functionality.</li>
-                        <li>Maintained code and collaborated using Git and GitHub.</li>
+                        <li>Built reusable UI components to improve maintainability and reduce duplicated code.</li>
+                        <li>Integrated REST APIs and contributed to AI-powered application features.</li>
+                        <li>Collaborated through Git and GitHub workflows.</li>
                     </ul>
+                    <div class="project-actions">
+                        <a class="project-link live" href="https://goxfused.com" target="_blank" rel="noreferrer">Visit XFused</a>
+                    </div>
                 </article>
             </div>
         </section>
@@ -791,7 +778,7 @@
             <div class="container">
                 <div class="section-head reveal">
                     <span class="eyebrow">Projects</span>
-                    <h2>Projects aligned to the role you actually want.</h2>
+                        <h2>Full stack apps, AI integrations, and security tooling.</h2>
                     <p>
                         Each project now includes a live preview and GitHub repo so recruiters can verify the work quickly and see that you actually shipped it.
                     </p>
@@ -802,12 +789,12 @@
                         <span class="project-label">Security-focused PWA</span>
                         <h3>URL Scanner PWA</h3>
                         <p>
-                            A mobile-first Progressive Web App built to detect phishing and malicious URLs in real time with a clean, trustworthy UI.
+                            A mobile-first Progressive Web App that detects phishing and malicious URLs in real time, with SSL validation and IP origin tracking for stronger security checks.
                         </p>
                         <ul>
                             <li>Built with React, JavaScript, and Tailwind CSS.</li>
-                            <li>Integrated SSL certificate checks and IP origin detection.</li>
-                            <li>Deployed on Vercel with responsive UI and performance focus.</li>
+                            <li>Implemented SSL certificate validation and IP origin tracking.</li>
+                            <li>Optimized performance and mobile responsiveness.</li>
                         </ul>
                         <div class="project-tags">
                             <span class="tag">React</span>
@@ -822,21 +809,23 @@
                     </article>
 
                     <article class="project-card reveal">
-                        <span class="project-label">AI + Product UI</span>
+                        <span class="project-label">Full Stack · AI Chat</span>
                         <h3>AI Outfit Recommendation Platform</h3>
                         <p>
-                            A recommendation experience focused on personalized suggestions, smooth browsing, and frontend collaboration with AI-driven logic.
+                            A full stack AI app that gives personalized outfit recommendations based on user preferences, with real-time fashion and styling suggestions through an AI chat interface.
                         </p>
                         <ul>
-                            <li>Developed frontend interfaces for outfit recommendations.</li>
-                            <li>Designed easy-to-use browsing and suggestion flows.</li>
-                            <li>Collaborated with backend APIs for recommendation logic.</li>
+                            <li>Integrated Google Gemini API for real-time styling suggestions.</li>
+                            <li>Built REST APIs and managed MongoDB database operations.</li>
+                            <li>Used Cloudinary for image handling and cloud storage.</li>
                         </ul>
                         <div class="project-tags">
-                            <span class="tag">React</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Express.js</span>
+                            <span class="tag">React.js</span>
                             <span class="tag">Node.js</span>
-                            <span class="tag">API Integration</span>
-                            <span class="tag">AI UI</span>
+                            <span class="tag">Gemini API</span>
+                            <span class="tag">Cloudinary</span>
                         </div>
                         <div class="project-actions">
                             <a class="project-link live" href="https://glamourhall-v2-fe.vercel.app/chat" target="_blank" rel="noreferrer">Live Preview</a>
@@ -845,23 +834,25 @@
                     </article>
 
                     <article class="project-card reveal">
-                        <span class="project-label">Creator Tool + AI</span>
+                        <span class="project-label">Full Stack · AI Generation</span>
                         <h3>AI Thumbnail Generator (Thumblify)</h3>
                         <p>
-                            A web-based AI tool designed to generate high-converting, scroll-stopping thumbnails from simple prompts with a fast and creator-friendly workflow.
+                            A full stack AI application that generates YouTube thumbnails from user prompts, turning ideas into creator-ready visuals through a fast, customizable workflow.
                         </p>
                         <ul>
-                            <li>Built an AI thumbnail generation platform that turns text ideas into engaging designs in seconds.</li>
-                            <li>Designed an intuitive UI for prompts, style selection, and real-time thumbnail preview.</li>
-                            <li>Integrated AI image generation workflows and customization options like colors, elements, and uploads.</li>
-                            <li>Focused on fast generation, usability, and creator productivity.</li>
+                            <li>Integrated Google Gemini API for dynamic content generation.</li>
+                            <li>Designed RESTful APIs and handled MongoDB database operations.</li>
+                            <li>Used Cloudinary for image uploads and cloud storage.</li>
+                            <li>Built prompt, style, and thumbnail preview flows with customization controls.</li>
                         </ul>
                         <div class="project-tags">
-                            <span class="tag">React</span>
-                            <span class="tag">JavaScript</span>
+                            <span class="tag">MongoDB</span>
+                            <span class="tag">Express.js</span>
+                            <span class="tag">React.js</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">Gemini API</span>
+                            <span class="tag">Cloudinary</span>
                             <span class="tag">Tailwind CSS</span>
-                            <span class="tag">AI APIs</span>
-                            <span class="tag">Vercel</span>
                         </div>
                         <div class="project-actions">
                             <a class="project-link live" href="https://thumblify-umber-two.vercel.app/" target="_blank" rel="noreferrer">Live Preview</a>
@@ -891,8 +882,9 @@
 
                     <article class="education-card reveal">
                         <h3>Full Stack Web Development Training</h3>
-                        <p>Certified on completion of full stack web development training.</p>
-                        <p>Supports your shift from frontend specialization toward a broader MERN path.</p>
+                        <p>Udemy · Full Stack Web Development</p>
+                        <p>Coursework covering frontend, backend, and database technologies.</p>
+                        <a class="project-link" href="https://www.udemy.com/certificate/UC-cffb89a8-5b9e-4817-b9ee-2840d725fcd4/" target="_blank" rel="noreferrer">View Certificate</a>
                     </article>
                 </div>
             </div>
@@ -902,35 +894,35 @@
             <div class="container">
                 <div class="section-head reveal">
                     <span class="eyebrow">Contact</span>
-                    <h2>Open to MERN full stack and frontend internship opportunities.</h2>
+                    <h2>Open to software engineering and full stack opportunities.</h2>
                     <p>
-                        If you're hiring for an intern who can contribute on the frontend from day one and keep growing into full stack product work, let's connect.
+                        If you're looking for an engineer who can contribute across frontend, backend, APIs, and AI-powered product features, let's connect.
                     </p>
                 </div>
 
                 <div class="contact-grid">
                     <article class="contact-card reveal">
                         <h3>Contact Details</h3>
-                        <p>I'm based in Siliguri, West Bengal, India and open to remote internship opportunities.</p>
+                        <p>I'm based in Siliguri, West Bengal, India and open to remote opportunities.</p>
                         <div class="contact-list">
                             <div class="contact-item">
                                 <div>
                                     <strong>Email</strong>
-                                    <span>Best for internship conversations</span>
+                                    <span>Best for professional conversations</span>
                                 </div>
-                                <a href="mailto:nikhilgurung170@gmail.com">nikhilgurung170@gmail.com</a>
+                                <a href="mailto:nikhilgurung103@gmail.com">nikhilgurung103@gmail.com</a>
                             </div>
                             <div class="contact-item">
                                 <div>
                                     <strong>Phone</strong>
                                     <span>Available for quick discussions</span>
                                 </div>
-                                <a href="tel:+918250547672">+91 8250547672</a>
+                                <a href="tel:+918250547672">8250547672</a>
                             </div>
                             <div class="contact-item">
                                 <div>
                                     <strong>Location</strong>
-                                    <span>Remote and internship friendly</span>
+                                    <span>Available for remote opportunities</span>
                                 </div>
                                 <span>Siliguri, West Bengal, India</span>
                             </div>
@@ -943,12 +935,7 @@
                         <div class="contact-actions" style="margin-top:22px;">
                             <a class="button primary" href="https://github.com/nikhil7672" target="_blank" rel="noreferrer">GitHub</a>
                             <a class="button secondary" href="https://www.linkedin.com/in/nikhil-gurung" target="_blank" rel="noreferrer">LinkedIn</a>
-                            <a class="button secondary" href="./images/Nikhil Gurung(Resume).pdf" download>Resume PDF</a>
-                        </div>
-                        <div class="tags" style="margin-top:26px;">
-                            <span class="tag">English - Professional Working Proficiency</span>
-                            <span class="tag">Hindi - Professional Working Proficiency</span>
-                            <span class="tag">Nepali - Native / Fluent</span>
+                            <a class="button secondary" href="./images/Nikhil Gurung.pdf" download>Resume PDF</a>
                         </div>
                     </article>
                 </div>
@@ -958,7 +945,7 @@
 
     <footer class="footer">
         <div class="container footer-inner">
-            <p>© 2026 Nikhil Gurung. Portfolio tailored for MERN full stack internship applications.</p>
+            <p>© 2026 Nikhil Gurung. Full stack applications, AI integrations, and security-focused products.</p>
             <div class="footer-links">
                 <a href="#about">About</a>
                 <a href="#projects">Projects</a>

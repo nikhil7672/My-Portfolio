@@ -4,6 +4,8 @@ const navLinks = document.querySelector("#navLinks");
 const revealItems = document.querySelectorAll(".reveal");
 const tiltCard = document.querySelector("[data-tilt-card]");
 
+document.documentElement.classList.add("js");
+
 const syncHeaderState = () => {
     if (!siteHeader) return;
     siteHeader.classList.toggle("scrolled", window.scrollY > 24);
@@ -24,19 +26,23 @@ if (menuToggle && navLinks) {
     });
 }
 
-const revealObserver = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    },
-    { threshold: 0.18 }
-);
+if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.18 }
+    );
 
-revealItems.forEach((item) => revealObserver.observe(item));
+    revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+    revealItems.forEach((item) => item.classList.add("visible"));
+}
 
 if (tiltCard) {
     const resetTilt = () => {
